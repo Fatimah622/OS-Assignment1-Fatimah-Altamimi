@@ -293,7 +293,7 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+[While threads inside a single Java process share memory and resources, a process is an autonomous program execution with its own memory area. Compared to distinct operating-system processes, threads are typically less expensive to construct and interact between. Instead of representing an actual operating system process, SchedulerSimulation.java's Process class simulates a process. The Java thread that runs the simulated process is created by the addProcessToQueue() function using new Thread(process). This method enables the assignment to show scheduling behavior in a single Java program.]
 
 ## Question 2: Ready Queue Behavior
 
@@ -305,15 +305,31 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+[In Round-Robin scheduling,A process is moved back to the end of the ready queue if it does not complete within its time quantum. P1 had a burst time of 10197 ms and a time quantum of 5000 ms in my simulation. P1 was added back to the ready queue with 5197 ms left after its first execution. It was re-queued once more with 197 ms left after its second execution, for a total of two re-queues prior to completion. Because other waiting processes receive CPU time before P1 executes again, this behavior ensures fairness. ]
 
 Example from my output:
-```
-[Paste a relevant snippet from your program output here showing a process being re-queued]
+
+[▶ P1 executing quantum [5000ms]
+⏸ P1 completed quantum 5000ms
+   Remaining time: 5197ms
+↻ P1 yields CPU for context switch
+
+➕ P1 added to ready queue │ Burst time: 10197ms │ Priority: 8
+
+▶ P1 executing quantum [5000ms]
+⏸ P1 completed quantum 5000ms
+   Remaining time: 197ms
+↻ P1 yields CPU for context switch
+
+➕ P1 added to ready queue │ Burst time: 10197ms │ Priority: 8
+
+▶ P1 executing quantum [197ms]
+   Remaining time: 0ms
+✓ P1 finished execution!]
 ```
 
 **Explanation of example:**
-[Explain what is happening in the output snippet you pasted.]
+[Because P1's entire burst time exceeded two time quanta, it required three execution turns. Before completing its last 197 ms, it made two trips back to the ready queue. Instead of allowing P1 to use the CPU continually, this permitted other processes to run in between P1's turns.]
 
 ## Question 3: Thread Lifecycle
 
@@ -323,15 +339,15 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences overall; one short explanation per state)*
 
-1. **New**: [When is P1 in the New state?]
+1. **New**: [P1's Java thread enters the New state when new Thread(process) creates it inside addProcessToQueue()]
 
-2. **Runnable**: [When does P1 become Runnable?]
+2. **Runnable**: [When the scheduler calls currentThread.start(), P1's thread becomes eligible for CPU execution and enters the Runnable state.]
 
-3. **Running**: [When is P1 Running?]
+3. **Running**: [P1 begins executing its run() method when the JVM schedules its thread, as shown by P1 executing quantum [5000ms] in my output.]
 
-4. **Waiting**: [When and why would a thread be Waiting?]
+4. **Waiting**: [During the simulated execution, P1 enters the TIMED_WAITING state when Thread.sleep() is called, while the main thread waits for P1's thread to finish using currentThread.join().]
 
-5. **Terminated**: [When is P1 Terminated?]
+5. **Terminated**: [P1's Java thread ends when it completes its allotted quantum; the simulation then starts a new thread for P1's subsequent turn until the procedure is finished in 197 ms.]
 
 ## Question 4: Real-World Applications
 
@@ -341,32 +357,32 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences per example)*
 
-### Example 1 (operating-system level): [Name of scenario]
+### Example 1 (operating-system level): [Time-Sharing Operating System]
 
 **Description**:
-[Describe the real-world scenario.]
+[CPU time must be divided among several runnable tasks by a time-sharing operating system. Before the next available work is taken into consideration, each task in a simple Round-Robin scheduler is given a set time quantum. Each turn is limited by the time quantum, and the tasks match the simulated operations in my software.]
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
+[One CPU-bound task cannot take up all of the processor thanks to Round-Robin. Frequent scheduling and context changes improve responsiveness and fairness by allowing other prepared jobs to advance.]
 
-### Example 2: [Name of application/scenario]
+### Example 2: [Background Task Processing in an Application]
 
 **Description**:
-[Describe the real-world scenario or application.]
+[Document transformations and data processing are examples of independent background jobs that an application may need to handle. Before going on to the next task, a simplified cooperative scheduler may assign a finite amount of processing labor to each job. In my simulation, these jobs would function as processes, with each processing slice standing in for a time quantum.]
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
+[Instead of letting one big job cause all the others to be delayed, a Round-Robin strategy can assist spread processing chances among jobs. When multiple jobs are waiting, this makes progress more predictable; however, a practical implementation must also take resource requirements and task priorities into account.]
 
 ## Summary
 
 **Key concepts I understood through these questions:**
-1.
-2.
-3.
+1.the distinction between real Java threads and simulated processes, including thread lifespan and creation.
+2.How Round-Robin scheduling distributes execution opportunities equitably using a time quantum and a FIFO ready queue.
+3.How scheduler behavior is described by waiting time, turnaround time, and context-switch counting.
 
 **Concepts I need to study more:**
-1.
-2.
+1.Race situations, shared memory security, and thread synchronization
+2.How actual operating systems measure scheduling performance and execute context shifts.
 
 ---
 
