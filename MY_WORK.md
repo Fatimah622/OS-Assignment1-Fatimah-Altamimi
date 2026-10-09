@@ -129,68 +129,68 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+### Entry 1 - [October 5, 2026, 7:00 PM]
+**What I did**:studied the assignment on CPU Scheduler Simulation.
 
-**Details**:
+**Details**:I went over the assignment specifications and looked into SchedulerSimulation's structure.Java. I concentrated on the scheduler loop, the time quantum, the ready queue, and the Process class. I also looked at how simulated processes are represented by Java threads.
 
-**Challenges**:
+**Challenges**:recognizing the distinction between a genuine Java thread and a simulated process.
 
-**Solution**:
+**Solution**:I traced how a Process object is passed to new Thread(process) and how the scheduler starts and joins threads.
 
-**Time spent**:
-
----
-
-### Entry 2 - [Date and Time]
-**What I did**:
-
-**Details**:
-
-**Challenges**:
-
-**Solution**:
-
-**Time spent**:
+**Time spent**:1 hour
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**:
+### Entry 2 - [October 8, 2026, 9:00 PM]
+**What I did**: Implemented Feature 1: Process Priority.
 
-**Details**:
+**Details**:I included getter and setter methods, a priority field, and randomized priorities ranging from 1 to 10. Without altering the FIFO scheduling sequence, I modified the ready-queue output to show the priority of each task.
 
-**Challenges**:
+**Challenges**:ensuring that the Round-Robin scheduling behavior was unaffected by the priority value.
 
-**Solution**:
+**Solution**:I just used priority as extra process information while maintaining the original queue operations.
 
-**Time spent**:
-
----
-
-### Entry 4 - [Date and Time]
-**What I did**:
-
-**Details**:
-
-**Challenges**:
-
-**Solution**:
-
-**Time spent**:
+**Time spent**:1 hour
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**:
+### Entry 3 - [October 8, 2026, 10:00 PM]
+**What I did**: Implemented Feature 2: Context Switch Tracking.
 
-**Details**:
+**Details**:Every time the scheduler initiated a new process execution, I added a static counter and increased it. After every procedure was finished, I printed the final counter. There were 29 context shifts in my recorded run.
 
-**Challenges**:
+**Challenges**:choosing the location of the counter's increment.
 
-**Solution**:
+**Solution**:In order to count each scheduled execution, I put the increment in the scheduler loop before currentThread.start().
 
-**Time spent**:
+**Time spent**:1 hour
+
+---
+
+### Entry 4 - [October 9, 2026, 2:00 AM]
+**What I did**: Implemented Feature 3: Waiting Time and Turnaround Time.
+
+**Details**:I used System to add time-tracking fields and methods.currentTimeMillis(). When processes joined the ready queue, I noted the waiting intervals and totaled the waiting time prior to execution. Additionally, I printed a final summary table and saved the processes in allProcesses.
+
+**Challenges**:calculating waiting time over several Round-Robin runs without accounting for CPU execution time as waiting time.
+
+**Solution**:Every time a process reentered the ready queue and accrued waiting time prior to the subsequent execution, I reset the waiting interval.
+
+**Time spent**:3 hour
+
+---
+
+### Entry 5 - [October 9, 2026, 4:00 PM]
+**What I did**:evaluated the finished simulation and worked on the Part 3 documentation.
+
+**Details**:I used a 5000 ms time quantum to examine the output for 13 processes. The simulation showed a waiting-time summary for each of the 13 processes as well as 29 context transitions. I confirmed that P1's turnaround time (92613 + 10197 = 102810 ms) matched the necessary formula. Using samples from my simulation output, I also worked on the technical answers, reflection questions, and development log.
+
+**Challenges**:confirming the consistency of the scheduler output and summary values while providing a comprehensive explanation of the underlying ideas.
+
+**Solution**:I verified the turnaround-time computations, compared the end table to the execution log, and supported my written responses with real output examples.
+
+**Time spent**:2 hour
 
 ---
 
@@ -211,13 +211,13 @@
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: [8 hours]
 
-**Most challenging part**:
+**Most challenging part**:monitoring the amount of time spent waiting for repeated entries into the ready queue.
 
-**Most interesting learning**:
+**Most interesting learning**:Recognizing how a Round-Robin queue allows processes to run repeatedly and how Java threads may be utilized to mimic CPU scheduling.
 
-**What I would do differently next time**:
+**What I would do differently next time**:Instead of reconstructing it after the fact, I would prepare the code modifications and testing procedures in advance and maintain a development log while working.
 
 ---
 
