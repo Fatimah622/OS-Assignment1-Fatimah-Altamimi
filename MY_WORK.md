@@ -237,7 +237,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[I discovered that a Java program may handle several threads within a single application thanks to multithreading. Every simulated process in this assignment was linked to a Java thread. I discovered that while Thread.join() causes the main thread to wait for a thread to finish, Thread.start() initiates a thread's execution. I also realized that Thread.sleep() can mimic how long a process runs without always utilizing the CPU. One significant finding was that the simulation's thread start order is determined by the ready queue. This made it easier for me to comprehend how CPU scheduling and Java threading are related.]
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -245,7 +245,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[Implementing the waiting-time calculation in Feature 3 was the most difficult aspect. Before its burst time is up, a process may enter the ready queue multiple times. As a result, a single calculation of waiting time would not accurately reflect all of its waiting periods. I had to know when a process was added to the queue and when it began running. Additionally, I had to refrain from adding execution time to the total waiting time. Compared to just showing priority or increasing a counter, this feature required more meticulous tracking.]
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -253,7 +253,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[I tackled the task by focusing on a single aspect at a time. Before determining where each modification belonged, I went over the pertinent sections of SchedulerSimulation.java. I separated waiting intervals from execution for the waiting-time functionality using markReadyQueueEntry() and recordWaitingTime(). After that, I checked the final output table after running the simulation. For instance, I confirmed that P1's turnaround time was 101959 ms, which is equal to its burst time of 10197 ms plus its waiting time of 91762 ms. I was able to verify whether the computations complied with the assignment requirements by testing the output following the code modifications.]
 
 ## Question 4: How can you apply multithreading concepts in real-world applications?
 
@@ -261,19 +261,19 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[Applications that must complete multiple tasks without becoming unresponsive can benefit from multithreading. For instance, several threads can be used by a web browser to manage user interactions and page loading. While reacting to user controls, a music application might keep playing music. The scheduler in my simulation chose which simulated process to run next by using a ready queue. This made it easier for me to comprehend how scheduling allows tasks to share processing opportunities. When creating applications that require responsive interfaces and background activities, I can use these concepts.]
 
 ### Optional: What would you like to learn more about?
 
-[Any topics related to threading or operating systems that you're curious about?]
+[I'm interested in learning more about race scenarios, thread synchronization, and the actual context shifts that operating systems carry out.]
 
 ### Optional: How confident do you feel about multithreading concepts now?
 
-[Beginner / Intermediate / Confident. What do you understand well? What needs more practice?]
+[in the middle. I am aware of time quantum, basic scheduling, thread generation, and the function of start() and join(). I still need to work on my synchronization and concurrent thread execution skills.]
 
 ### Optional: Feedback on the assignment
 
-[Any comments? Was it helpful? Too easy or hard? Suggestions?]
+[The assignment made it easier to relate Java code to operating system ideas. Observing process execution and re-queuing was made simpler by the scheduling output. Although it was difficult, tracking waiting time was helpful in comprehending Round-Robin scheduling.]
 
 ---
 
